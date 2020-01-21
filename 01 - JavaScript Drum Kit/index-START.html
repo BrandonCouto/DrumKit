@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">Lil Uzi</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Lil Pump</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Metro Boomin</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">Carti</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Travis Scott</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">BlueFace</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">Big Sean</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">Drake</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">21 Savage</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/142  Lil Uzi Vert SFX Sound Effects Sayings and Catch Phrases Acapella.mp3"></audio>
+  <audio data-key="83" src="sounds/lil pump.mp3"></audio>
+  <audio data-key="68" src="sounds/Metro Boomin Producer Tag - If Young Metro Don't Trust You I'm Gon' Shoot You.mp3"></audio>
+  <audio data-key="70" src="sounds/playboi carti.mp3"></audio>
+  <audio data-key="71" src="sounds/travis scott.wav"></audio>
+  <audio data-key="72" src="sounds/uploads_2F1545002277824-zfpa21bpkjs-67af46656f4efb96cc515f4a69f561e3_2Fblueface_baby.mp3"></audio>
+  <audio data-key="74" src="sounds/bigsean_holdup2.mp3"></audio>
+  <audio data-key="75" src="sounds/back-to-back.wav"></audio>
+  <audio data-key="76" src="sounds/002  21 Savage Saying 21   SFX Sound Effects Sayings and Catch Phrases Acapella.mp3"></audio>
+
+<script>
+function playSound(e){
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+  if (!audio) return;
+  key.classList.add('playing') ;
+  audio.currentTime = 0;
+  audio.play();
+
+}
+
+function removeTransition(e) {
+  if (e.propertyName !== 'transform') return;
+  this.classList.remove('playing');
+
+}
+
+const keys = document. querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitioned' , removeTransition));
+window.addEventListener('keydown' , playSound);
+</script>
+
+
+</body>
+</html>
